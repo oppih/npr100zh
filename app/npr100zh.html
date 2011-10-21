@@ -28,7 +28,7 @@
             rtnMsg += ("by " + author + "<br/><br/>");
             rtnMsg += ("<a href='http://amazon.com/exec/obidos/ASIN/" + asin + "/" + amzid + "' target='amz'><img border='0' src='http://images.amazon.com/images/P/" + asin + ".01._SCLZZZZZZZ_SL500_.jpg' class='justBorder'/></a><br/><br/>");
             rtnMsg += "<button class='btnBuy' onClick='window.open(\"http://amazon.com/exec/obidos/ASIN/" + asin + "/" + amzid + "\", \"amz\")'>Buy at Amazon.com</button><br/>";
-            rtnMsg += "<button class='btnBuy' onClick='window.open(\"http://www.amazon.cn/dp/" + asin + "/" + amzid + "\", \"amzcn\")'>Buy at Amazon.cn</button><br/>";
+            rtnMsg += "<button class='btnBuy' onClick='window.open(\"http://www.amazon.cn/exec/obidos/ASIN/" + asin + "/" + amzid + "\", \"amzcn\")'>Buy at Amazon.cn</button><br/>";
             rtnMsg += "<button class='btnBuy' onClick='window.open(\"http://book.douban.com/subject_search?search_text=" + asin + "/" + "\", \"douban\")'>View at douban.com</button><br/>";
             rtnMsg += "<button class='btnBack' onClick='goBack(\"leafNode\", \"" + myId + "\")'>< Go Back</button><br/>";
             rtnMsg += "<a href='javascript:void(0)' onClick='startOver()'>Start Over</a>";
