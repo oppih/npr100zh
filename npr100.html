@@ -1,0 +1,1155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0046)http://www.sfsignal.com/interactive/npr100.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>An Interactive Guide to NPR's List of Top 100 Science Fiction and Fantasy Books</title>
+    <link rel="stylesheet" media="screen" href="./npr100_files/interactiveGuide.css" type="text/css"> 
+    <script language="JavaScript" src="./npr100_files/jquery.js" type="text/javascript"></script>    
+    <script>
+        var amzid = "sfstom-20";
+        function hideThenShow(elIdFrom, elIdTo)
+        {
+            $("#" + elIdFrom).hide("fast", "showMe('"+ elIdTo + "')");
+            alert("calling showme");
+        }
+
+        function showMe(elIdTo)
+        {
+            alert("inside showme");
+            $("#" + elIdTo).show("fast");
+            alert("leaving showme");
+        }
+
+        function buildFinalHTML(myId, asin, title, author, flavorText)
+        {
+            var rtnMsg = "<p>" + flavorText + "</p>";
+            rtnMsg += ("<h1 class='title'>" + title + "</h1>");
+            rtnMsg += ("by " + author + "<br/><br/>");
+            rtnMsg += ("<a href='http://amazon.com/exec/obidos/ASIN/" + asin + "/" + amzid + "' target='amz'><img border='0' src='http://images.amazon.com/images/P/" + asin + ".01._SCLZZZZZZZ_SL500_.jpg' class='justBorder'/></a><br/><br/>");
+            rtnMsg += "<button class='btnBuy' onClick='window.open(\"http://amazon.com/exec/obidos/ASIN/" + asin + "/" + amzid + "\", \"amz\")'>Buy at Amazon</button><br/>";
+            rtnMsg += "<button class='btnBack' onClick='goBack(\"leafNode\", \"" + myId + "\")'>< Go Back</button><br/>";
+            rtnMsg += "<a href='javascript:void(0)' onClick='startOver()'>Start Over</a>";
+            return rtnMsg;
+        }
+        
+        function goBack(myId, tgtId)
+        {
+            $("#" + myId).hide('fast', function() {$("#" + tgtId).show('fast');});
+        }
+
+        function startOver()
+        {
+            $("#leafNode").hide('fast', function() {$("#q1").show('fast');});
+        }
+    </script>
+</head>
+
+<body>
+    <div class="banner">
+        <a href="http://www.sfsignal.com/"><img border="0" src="./npr100_files/sfsignal-bigLogo01.gif" class="noBorder"></a>
+        <h1>An Interactive Guide to NPR's List of Top 100 Science Fiction and Fantasy Books</h1>
+        <p>[An <a href="http://www.sfsignal.com/archives/2011/10/an-interactive-guide-to-navigating-nprs-list-of-top-100-science-fiction-and-fantasy-books/">Interactive</a> version of the <a href="http://www.sfsignal.com/archives/2011/09/flowchart-for-navigating-nprs-top-100-sff-books/">Flowchart</a> that was based on <a href="http://www.npr.org/2011/08/11/139085843/your-picks-top-100-science-fiction-fantasy-books">NPR's list of Top 100 Science-Fiction &amp; Fantasy Books</a>]</p><br>
+    </div>
+    
+    <!-- START -->
+    <div id="q1" align="center" style="display: block; ">
+        <p class="question">Where do you want to start?</p>
+        <table><tbody><tr>
+            <td></td>
+            <td><button id="q1-sf">Science Fiction</button></td>
+            <td><button id="q1-fantasy">Fantasy</button></td>
+            <td></td>
+        </tr><tr>
+            <td><button id="q1-both" class="btnNo">Neither</button></td>
+            <td><button id="q1-pictures" class="btnNo">Neither</button></td>
+            <td><button id="q1-horror" class="btnNo">Neither</button></td>
+            <td><button id="q1-embarassed" class="btnNo">Neither</button></td>
+        </tr><tr>
+        	<td>Can I have both?</td>
+        	<td>I only read books with pictures.</td>
+        	<td>What about Horror?</td>
+        	<td>I'd rather not be seen in that area of the bookstore.</td>
+        </tr></tbody></table>
+        <script>
+            $('#q1-sf').click(function() {$('#q1').hide('fast', function() {$('#q2').show('fast');});});
+            $('#q1-fantasy').click(function() {$('#q1').hide('fast', function() {$('#q3').show('fast');});});
+            $('#q1-both').click(function() {$('#q1').hide('fast', function() {$('#q50').show('fast');});});
+            $('#q1-pictures').click(function() {$('#q1').hide('fast', function() {$('#q51').show('fast');});});
+            $('#q1-horror').click(function() {$('#q1').hide('fast', function() {$('#q52').show('fast');});});
+            $('#q1-embarassed').click(function() {$('#q1').hide('fast', function() {$('#q53').show('fast');});});
+        </script>
+    </div>
+    
+    <!-- CYBERPUNK? -->
+    <div id="q2" align="center" class="hidden" style="display: none; ">
+        <p class="question">Do you like Cyberpunk?</p>
+        <table><tbody><tr>
+            <td><button id="q2-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q2-No" class="btnNo">No</button></td>
+            <td><button id="q2-Maybe">Maybe</button></td>
+        </tr><tr>
+        	<td>I love that Billy Idol album.</td>
+        	<td>I get enough "cyber punks" on Facebook.</td>
+        	<td>Can I get the geek without the bleak?</td>
+        </tr></tbody></table>
+        <button id="q2-Back" class="btnBack" onclick="goBack(&#39;q2&#39;, &#39;q1&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q2-Yes').click(function() {$('#q2').hide('fast', function() {$('#q4').show('fast');});});
+            $('#q2-No').click(function() {$('#q2').hide('fast', function() {$('#q5').show('fast');});});
+            $('#q2-Maybe').click(function() {$('#q2').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q2', '0380788624', 'Cryptonomicon', 'Neal Stephenson', ''));    $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <!-- Harry Potter? -->
+    <div id="q3" align="center" class="hidden">
+        <p class="question">Are you going to be upset when you don't find <strong>Harry Potter</strong>?</p>
+        <table><tbody><tr>
+            <td><button id="q3-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q3-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td>Give me more precocious lads at schools of magic, please!</td>
+        	<td>I know where to find Harry Potter if I need him.</td>
+        </tr></tbody></table>
+        <button id="q3-Back" class="btnBack" onclick="goBack(&#39;q3&#39;, &#39;q1&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q3-Yes').click(function() {$('#q3').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q3', '0756405890', 'The Name of the Wind', 'Patrick Rothfuss', '')); $('#leafNode').show('fast');});});
+            $('#q3-No').click(function() {$('#q3').hide('fast', function() {$('#q6').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q4" align="center" class="hidden" style="display: none; ">
+        <p class="question">Gritty Noir, Neo-Victorian or Samurai?</p>
+        <table><tbody><tr>
+            <td><button id="q4-noir">Gritty Noir</button></td>
+            <td><button id="q4-neo">Neo-Victorian</button></td>
+            <td><button id="q4-samurai">Samurai</button></td>
+        </tr></tbody></table>
+        <button id="q4-Back" class="btnBack" onclick="goBack(&#39;q4&#39;, &#39;q2&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q4-noir').click(function() {$('#q4').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q4', '0441012035', 'Neuromancer', 'William Gibson', '')); $('#leafNode').show('fast');});});
+            $('#q4-neo').click(function() {$('#q4').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q4', '0553380966', 'The Diamond Age', 'Neal Stephenson', 'Funny hats please!')); $('#leafNode').show('fast');});});
+            $('#q4-samurai').click(function() {$('#q4').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q4', '0553380958', 'Snow Crash', 'Neal Stephenson', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q5" align="center" class="hidden">
+        <p class="question">Ready to blast into space?</p>
+        <table><tbody><tr>
+            <td><button id="q5-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q5-No" class="btnNo">No</button></td>
+            <td><button id="q5-Maybe">Maybe</button></td>
+        </tr><tr>
+        	<td>The stars are my destination. (Can't believe they left that one off.)</td>
+        	<td>I like to keep my feet on the ground</td>
+        	<td>I'm not sure. Can I stay in this Solar System?</td>
+        </tr></tbody></table>
+        <button id="q5-Back" class="btnBack" onclick="goBack(&#39;q5&#39;, &#39;q2&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q5-Yes').click(function() {$('#q5').hide('fast', function() {$('#q7').show('fast');});});
+            $('#q5-No').click(function() {$('#q5').hide('fast', function() {$('#q8').show('fast');});});
+            $('#q5-Maybe').click(function() {$('#q5').hide('fast', function() {$('#q9').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q6" align="center" class="hidden">
+        <p class="question">Are you new to the fantasy genre?</p>
+        <table><tbody><tr>
+            <td><button id="q6-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q6-No" class="btnNo">No</button></td>
+            <td><button id="q6-Maybe">Maybe</button></td>
+        </tr><tr>
+        	<td>I am as yet unfamiliar with your tropes. Do your worst.</td>
+        	<td>I'm what you call "experienced".</td>
+        	<td>Does The Wizard of Oz count?</td>
+        </tr></tbody></table>
+        <button id="q6-Back" class="btnBack" onclick="goBack(&#39;q6&#39;, &#39;q3&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q6-Yes').click(function() {$('#q6').hide('fast', function() {$('#q69').show('fast');});});
+            $('#q6-No').click(function() {$('#q6').hide('fast', function() {$('#q10').show('fast');});});
+            $('#q6-Maybe').click(function() {$('#q6').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q6', '0061350966', 'Wicked: The Life and Times of the Wicked Witch of the West', 'Gregory Maguire', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+   
+    <div id="q7" align="center" class="hidden">
+        <p class="question">Are you a war buff?</p>
+        <table><tbody><tr>
+            <td><button id="q7-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q7-No" class="btnNo">No</button></td>
+            <td><button id="q7-Maybe">Maybe</button></td>
+        </tr><tr>
+        	<td>I watch the Military Channel exclusively</td>
+        	<td>But I'm interested in first contact</td>
+        	<td>What I'm really after is exploring the galaxy</td>
+        </tr></tbody></table>
+        <button id="q7-Back" class="btnBack" onclick="goBack(&#39;q7&#39;, &#39;q5&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q7-Yes').click(function() {$('#q7').hide('fast', function() {$('#q11').show('fast');});});
+            $('#q7-No').click(function() {$('#q7').hide('fast', function() {$('#q12').show('fast');});});
+            $('#q7-Maybe').click(function() {$('#q7').hide('fast', function() {$('#q13').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q8" align="center" class="hidden">
+        <p class="question">Don't you mean underground?</p>
+        <table><tbody><tr>
+            <td><button id="q8-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q8-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td>Give me some subterranean action!</td>
+        	<td>I said "on", smart guy.</td>
+        </tr></tbody></table>
+        <button id="q8-Back" class="btnBack" onclick="goBack(&#39;q8&#39;, &#39;q5&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q8-Yes').click(function() {$('#q8').hide('fast', function() {$('#q14').show('fast');});});
+            $('#q8-No').click(function() {$('#q8').hide('fast', function() {$('#q15').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q9" align="center" class="hidden">
+        <p class="question">Sure! Near or far?</p>
+        <table><tbody><tr>
+            <td><button id="q9-Near">Near</button></td>
+            <td><button id="q9-Far">Far</button></td>
+        </tr><tr>
+        	<td>How about Mars?</td>
+        	<td></td>
+        </tr></tbody></table>
+        <button id="q9-Back" class="btnBack" onclick="goBack(&#39;q9&#39;, &#39;q5&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q9-Near').click(function() {$('#q9').hide('fast', function() {$('#q16').show('fast');});});
+            $('#q9-Far').click(function() {$('#q9').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q9', '0451457994', '2001: A Space Odyssey', 'Arthur C. Clarke', 'As long as you\'re going on a long trip, it may as well be a trippy one.')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q10" align="center" class="hidden">
+        <p class="question">Like the Arthurian legend?</p>
+        <table><tbody><tr>
+            <td><button id="q10-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q10-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td>I own <i>The Sword and the Stone</i> on DVD and VHS</td>
+        	<td></td>
+        </tr></tbody></table>
+        <button id="q10-Back" class="btnBack" onclick="goBack(&#39;q10&#39;, &#39;q6&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q10-Yes').click(function() {$('#q10').hide('fast', function() {$('#q17').show('fast');});});
+            $('#q10-No').click(function() {$('#q10').hide('fast', function() {$('#q18').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q11" align="center" class="hidden">
+        <p class="question">Who shall we fight?</p>
+        <table><tbody><tr>
+            <td><button id="q11-bugs">Man vs. Bugs</button></td>
+            <td><button id="q11-farbugs">Man vs. Far Away Bugs</button></td>
+            <td><button id="q11-alien">Man vs. Alien</button></td>
+        </tr><tr>
+            <td><button id="q11-colonial">Spiritual vs. Colonial</button></td>
+            <td><button id="q11-human">Human vs. Human</button></td>
+            <td><button id="q11-everyone">Everyone</button></td>
+        </tr></tbody></table>
+        <button id="q11-Back" class="btnBack" onclick="goBack(&#39;q11&#39;, &#39;q7&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q11-bugs').click(function() {$('#q11').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q11', '0441783589', 'Straship Troopers', 'Robert A. Heinlein', '')); $('#leafNode').show('fast');});});
+            $('#q11-farbugs').click(function() {$('#q11').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q11', '0765362430', 'Ender\'s Game', 'Orson Scott Card', '')); $('#leafNode').show('fast');});});
+            $('#q11-alien').click(function() {$('#q11').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q11', '0312536631', 'The Forever War', 'Joe Haldeman', '')); $('#leafNode').show('fast');});});
+            $('#q11-colonial').click(function() {$('#q11').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q11', '0441013597', 'Dune', 'Frank Herbert', '')); $('#leafNode').show('fast');});});
+            $('#q11-human').click(function() {$('#q11').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q11', '0312863551', 'The Moon Is a Harsh Mistress', 'Robert A. Heinlein', '')); $('#leafNode').show('fast');});});
+            $('#q11-everyone').click(function() {$('#q11').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q11', '0765348276', 'Old Man\'s War', 'John Scalzi', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q12" align="center" class="hidden">
+        <p class="question">What kind of Aliens would you like?</p>
+        <table><tbody><tr>
+            <td><button id="q12-hostile">Hostile</button></td>
+            <td><button id="q12-absent">Absent</button></td>
+        </tr></tbody></table>
+        <table><tbody><tr>
+            <td><button id="q12-peaceful">Peaceful</button></td>
+            <td><button id="q12-fatherly">Fatherly</button></td>
+            <td><button id="q12-breeders">Prodigious Breeders</button></td>
+        </tr></tbody></table>
+        <button id="q12-Back" class="btnBack" onclick="goBack(&#39;q12&#39;, &#39;q7&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q12-hostile').click(function() {$('#q12').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q12', '0141441038', 'The War of the Worlds', 'H.G. Wells', '')); $('#leafNode').show('fast');});});
+            $('#q12-absent').click(function() {$('#q12').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q12', '0553287893', 'Rendezvous with Rama', 'Arthur C. Clarke', '')); $('#leafNode').show('fast');});});
+            $('#q12-peaceful').click(function() {$('#q12').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q12', '0345444051', 'Childhood\'s End', 'Arthur C. Clarke', '')); $('#leafNode').show('fast');});});
+            $('#q12-fatherly').click(function() {$('#q12').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q12', '0671004107', 'Contact', 'Carl Sagan', '')); $('#leafNode').show('fast');});});
+            $('#q12-breeders').click(function() {$('#q12').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q12', '0671741926', 'The Mote in God\'s Eye', 'Larry Niven & Jerry Pournelle', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q13" align="center" class="hidden">
+        <p class="question">A galaxy far, far away?</p>
+        <table><tbody><tr>
+            <td><button id="q13-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q13-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td>Preferably long ago as well.</td>
+        	<td>I see what you did there.</td>
+        </tr></tbody></table>
+        <button id="q13-Back" class="btnBack" onclick="goBack(&#39;q13&#39;, &#39;q7&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q13-Yes').click(function() {$('#q13').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q13', '0553296124', 'Heir to the Empire', 'Timothy Zahn', '')); $('#leafNode').show('fast');});});
+            $('#q13-No').click(function() {$('#q13').hide('fast', function() {$('#q19').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q14" align="center" class="hidden">
+        <p class="question">Wet or dry?</p>
+        <table><tbody><tr>
+            <td><button id="q14-wet">Underground</button></td>
+            <td><button id="q14-dry">Underwater</button></td>
+        </tr></tbody></table>
+        <button id="q14-Back" class="btnBack" onclick="goBack(&#39;q14&#39;, &#39;q8&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q14-wet').click(function() {$('#q14').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q14', '0099528495', 'Journey to the Centre of the Earth', 'Jules Verne', '')); $('#leafNode').show('fast');});});
+            $('#q14-dry').click(function() {$('#q14').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q14', '0099528533', 'Twenty Thousand Leagues Under the Sea ', 'Jules Verne', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q15" align="center" class="hidden">
+        <p class="question">Politics, Religion or Philosophy?</p>
+        <table><tbody><tr>
+            <td><button id="q15-politics">Read my lips...</button></td>
+            <td><button id="q15-religion">Tell me the good word</button></td>
+            <td><button id="q15-philosophy">I think therefore I am</button></td>
+            <td><button id="q15-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td></td>
+        	<td></td>
+        	<td></td>
+        	<td>These things aren't polite to talk about in company. Don't you guys write about time travel or something?</td>
+        </tr></tbody></table>
+        <button id="q15-Back" class="btnBack" onclick="goBack(&#39;q15&#39;, &#39;q8&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q15-politics').click(function() {$('#q15').hide('fast', function() {$('#q20').show('fast');});});
+            $('#q15-religion').click(function() {$('#q15').hide('fast', function() {$('#q21').show('fast');});});
+            $('#q15-philosophy').click(function() {$('#q15').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q15', '0575094184', 'Do Androids Dream of Electric Sheep?', 'Philip. K. Dick', '')); $('#leafNode').show('fast');});});
+            $('#q15-No').click(function() {$('#q15').hide('fast', function() {$('#q22').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q16" align="center" class="hidden">
+        <p class="question">Ah, Mars...what would you like to see from the Red Planet?</p>
+        <table><tbody><tr>
+            <td><button id="q16-vignettes">Vignettes</button></td>
+            <td><button id="q16-enviro">Environmentalism</button></td>
+            <td><button id="q16-lookingglass" class="btnMuchText">Through the looking glass</button></td>
+        </tr></tbody></table>
+        <button id="q16-Back" class="btnBack" onclick="goBack(&#39;q16&#39;, &#39;q9&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q16-vignettes').click(function() {$('#q16').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q16', '0380973839', 'The Martian Chronicles', 'Ray Bradbury', '')); $('#leafNode').show('fast');});});
+            $('#q16-enviro').click(function() {$('#q16').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q16', '0553560735', 'Red Mars', 'Kim Stanley Robinson', '')); $('#leafNode').show('fast');});});
+            $('#q16-lookingglass').click(function() {$('#q16').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q16', '068483118X', 'Space Trilogy', 'C. S. Lewis', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q17" align="center" class="hidden">
+        <p class="question">Which character do you like best?</p>
+        <table><tbody><tr>
+            <td><button id="q17-morgan">Morgan Le Faye</button></td>
+            <td><button id="q17-merlin">Merlin</button></td>
+            <td><button id="q17-arthur">Arthur</button></td>
+        </tr></tbody></table>
+        <button id="q17-Back" class="btnBack" onclick="goBack(&#39;q17&#39;, &#39;q10&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q17-morgan').click(function() {$('#q17').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q17', '0345441184', 'The Mists of Avalon', 'Marion Zimmer Bradley', '')); $('#leafNode').show('fast');});});
+            $('#q17-merlin').click(function() {$('#q17').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q17', '0060548258', 'The Crystal Cave', 'Mary Stewart', '')); $('#leafNode').show('fast');});});
+            $('#q17-arthur').click(function() {$('#q17').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q17', '0441020836', 'The Once and Future King', 'T.H. White', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q18" align="center" class="hidden">
+        <p class="question">Looking for modern-day settings?</p>
+        <table><tbody><tr>
+            <td><button id="q18-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q18-No" class="btnNo">No</button></td>
+            <td><button id="q18-Maybe">Maybe</button></td>
+        </tr><tr>
+        	<td>I'm a city-person.</td>
+        	<td>Let's find another world. This one's depressing</td>
+        	<td>I'm partial to small towns.</td>
+        </tr></tbody></table>
+        <button id="q18-Back" class="btnBack" onclick="goBack(&#39;q18&#39;, &#39;q10&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q18-Yes').click(function() {$('#q18').hide('fast', function() {$('#q23').show('fast');});});
+            $('#q18-No').click(function() {$('#q18').hide('fast', function() {$('#q24').show('fast');});});
+            $('#q18-Maybe').click(function() {$('#q18').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q18', '0380977273', 'Something Wicked This Way Comes', 'Ray Bradbury', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q19" align="center" class="hidden">
+        <p class="question">Are you having a laugh?</p>
+        <table><tbody><tr>
+            <td><button id="q19-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q19-No" class="btnNo">No</button></td>
+            <td><button id="q19-Maybe">Maybe</button></td>
+        </tr><tr>
+        	<td>Comedy is in my blood.</td>
+        	<td>I don't have a sense of humor that I'm aware of.</td>
+        	<td>I don't mind a few laughs between explosions.</td>
+        </tr></tbody></table>
+        <button id="q19-Back" class="btnBack" onclick="goBack(&#39;q19&#39;, &#39;q13&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q19-Yes').click(function() {$('#q19').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q19', '0345453743', 'The Ultimate Hitchhiker\'s Guide to the Galaxy', 'Douglas Adams', '')); $('#leafNode').show('fast');});});
+            $('#q19-No').click(function() {$('#q19').hide('fast', function() {$('#q25').show('fast');});});
+            $('#q19-Maybe').click(function() {$('#q19').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q19', '031600538X', 'The Culture Series', 'Iain M. Banks', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q20" align="center" class="hidden">
+        <p class="question">What's your interest?</p>
+        <table><tbody><tr>
+            <td><button id="q20-feminism">Feminism</button></td>
+            <td><button id="q20-communism">Communism</button></td>
+        </tr></tbody></table>
+        <button id="q20-Back" class="btnBack" onclick="goBack(&#39;q20&#39;, &#39;q15&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q20-feminism').click(function() {$('#q20').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q20', '0441007317', 'The Left Hand of Darkness', 'Ursula K. Le Guin', '')); $('#leafNode').show('fast');});});
+            $('#q20-communism').click(function() {$('#q20').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q20', '0061054887', 'The Dispossessed', 'Ursula K. Le Guin', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q21" align="center" class="hidden">
+        <p class="question">Pick your poison!</p>
+        <table><tbody><tr>
+            <td><button id="q21-catholicism">Catholicism</button></td>
+            <td><button id="q21-humanism">Humanism</button></td>
+        </tr></tbody></table>
+        <button id="q21-Back" class="btnBack" onclick="goBack(&#39;q21&#39;, &#39;q15&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q21-catholicism').click(function() {$('#q21').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q21', '0060892994', 'A Canticle for Leibowitz', 'Walter M. Miller, Jr.', '')); $('#leafNode').show('fast');});});
+            $('#q21-humanism').click(function() {$('#q21').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q21', '0441788386', 'Stranger in a Strange Land', 'Robert A. Heinlein', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q22" align="center" class="hidden">
+        <p class="question">Sure do. Modern or classic time travel?</p>
+        <table><tbody><tr>
+            <td><button id="q22-modern">Modern</button></td>
+            <td><button id="q22-classic">Classic</button></td>
+            <td><button id="q22-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td></td>
+        	<td></td>
+        	<td>All right, all right...I'm a bit out of my comfort zone. Got a nice mystery or thriller?</td>
+        </tr></tbody></table>
+        <button id="q22-Back" class="btnBack" onclick="goBack(&#39;q22&#39;, &#39;q15&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q22-modern').click(function() {$('#q22').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q22', '0553562738', 'Doomsday Book', 'Connie Willis', '')); $('#leafNode').show('fast');});});
+            $('#q22-classic').click(function() {$('#q22').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q22', '0575095172', 'The Time Machine', 'H.G. Wells', '')); $('#leafNode').show('fast');});});
+            $('#q22-No').click(function() {$('#q22').hide('fast', function() {$('#q26').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q23" align="center" class="hidden">
+        <p class="question">God or people under the streets?</p>
+        <table><tbody><tr>
+            <td><button id="q23-modern">Modern Mythology</button></td>
+            <td><button id="q23-beneath" class="btnMuchText">A World Beneath the City</button></td>
+        </tr></tbody></table>
+        <button id="q23-Back" class="btnBack" onclick="goBack(&#39;q23&#39;, &#39;q18&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q23-modern').click(function() {$('#q23').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q23', '0060558121', 'American Gods', 'Neil Gaiman', '')); $('#leafNode').show('fast');});});
+            $('#q23-beneath').click(function() {$('#q23').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q23', '0060557818', 'Neverwhere', 'Neil Gaiman', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q24" align="center" class="hidden">
+        <p class="question">Are you a fan of westerns?</p>
+        <table><tbody><tr>
+            <td><button id="q24-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q24-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td>I'm prone to don chaps and walk the streets at high noon.</td>
+        	<td>Too dusty. And I'm not much of a card player.</td>
+        </tr></tbody></table>
+       <button id="q24-Back" class="btnBack" onclick="goBack(&#39;q24&#39;, &#39;q18&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q24-Yes').click(function() {$('#q24').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q24', '0452284694', 'The Dark Tower Series', 'Stephen King', '')); $('#leafNode').show('fast');});});
+            $('#q24-No').click(function() {$('#q24').hide('fast', function() {$('#q27').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q25" align="center" class="hidden">
+        <p class="question">Kind of professorial, aren't we?</p>
+        <table><tbody><tr>
+            <td><button id="q25-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q25-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td>I'm a scholarly adventurer.</td>
+        	<td>I just like my action intense.</td>
+        </tr></tbody></table>
+        <button id="q25-Back" class="btnBack" onclick="goBack(&#39;q25&#39;, &#39;q19&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q25-Yes').click(function() {$('#q25').hide('fast', function() {$('#q28').show('fast');});});
+            $('#q25-No').click(function() {$('#q25').hide('fast', function() {$('#q29').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q26" align="center" class="hidden">
+        <p class="question">Sure do. Mystery or thriller?</p>
+        <table><tbody><tr>
+            <td><button id="q26-mystery">Mystery</button></td>
+            <td><button id="q26-thriller">Thriller</button></td>
+        </tr></tbody></table>
+        <button id="q26-Back" class="btnBack" onclick="goBack(&#39;q26&#39;, &#39;q22&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q26-mystery').click(function() {$('#q26').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q26', '0553293400', 'The Caves of Steel', 'Isaac Asimov', '')); $('#leafNode').show('fast');});});
+            $('#q26-thriller').click(function() {$('#q26').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q26', '0449208133', 'Lucifer\'s Hammer', 'Larry Niven and Jerry Pournelle', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q27" align="center" class="hidden">
+        <p class="question">Are animals more your thing?</p>
+        <table><tbody><tr>
+            <td><button id="q27-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q27-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td>I donate to the WWF. Not the wrestling one.</td>
+        	<td>I have allergies.</td>
+        </tr></tbody></table>
+        <button id="q27-Back" class="btnBack" onclick="goBack(&#39;q27&#39;, &#39;q24&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q27-Yes').click(function() {$('#q27').hide('fast', function() {$('#q30').show('fast');});});
+            $('#q27-No').click(function() {$('#q27').hide('fast', function() {$('#q31').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q28" align="center" class="hidden">
+        <p class="question">What are you studying?</p>
+        <table><tbody><tr>
+            <td><button id="q28-morgan">History</button></td>
+            <td><button id="q28-merlin">Engineering</button></td>
+            <td><button id="q28-arthur">Information Technology</button></td>
+        </tr></tbody></table>
+        <button id="q28-Back" class="btnBack" onclick="goBack(&#39;q28&#39;, &#39;q25&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q28-morgan').click(function() {$('#q28').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q28', '0553382578', 'The Foundation Trilogy', 'Isaac Asimov', '')); $('#leafNode').show('fast');});});
+            $('#q28-merlin').click(function() {$('#q28').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q28', '0345333926', 'Ringworld', 'Larry Niven', '')); $('#leafNode').show('fast');});});
+            $('#q28-arthur').click(function() {$('#q28').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q28', '0765329824', 'A Fire Upon The Deep', 'Vernor Vinge', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q29" align="center" class="hidden">
+        <p class="question">Do you have time for a series?</p>
+        <table><tbody><tr>
+            <td><button id="q29-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q29-No" class="btnNo">No</button></td>
+        </tr></tbody></table>
+        <button id="q29-Back" class="btnBack" onclick="goBack(&#39;q29&#39;, &#39;q25&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q29-Yes').click(function() {$('#q29').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q29', '0671578286', 'The Vorkosigan Saga', 'Lois McMaster Bujold', '')); $('#leafNode').show('fast');});});
+            $('#q29-No').click(function() {$('#q29').hide('fast', function() {$('#q32').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q30" align="center" class="hidden">
+        <p class="question">What's your ideal pet?</p>
+        <table><tbody><tr>
+            <td><button id="q30-unicorn">Unicorn</button></td>
+            <td><button id="q30-bunny">Bunny</button></td>
+            <td><button id="q30-dragon">Dragon</button></td>
+        </tr></tbody></table>
+        <button id="q30-Back" class="btnBack" onclick="goBack(&#39;q30&#39;, &#39;q27&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q30-unicorn').click(function() {$('#q30').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q30', '0451450523', 'The Last Unicorn', 'Peter S. Beagle', '')); $('#leafNode').show('fast');});});
+            $('#q30-bunny').click(function() {$('#q30').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q30', '0743277708', 'Watership Down', 'Richard Adams', '')); $('#leafNode').show('fast');});});
+            $('#q30-dragon').click(function() {$('#q30').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q30', '0345484266', 'Dragonflight', 'Anne McCaffrey', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q31" align="center" class="hidden">
+        <p class="question">How about some alternate history?</p>
+        <table><tbody><tr>
+            <td><button id="q31-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q31-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td>I'm a revisionist myself. Well, I was...</td>
+        	<td>I never paid any attention is history class.</td>
+        </tr></tbody></table>
+        <button id="q31-Back" class="btnBack" onclick="goBack(&#39;q31&#39;, &#39;q27&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q31-Yes').click(function() {$('#q31').hide('fast', function() {$('#q33').show('fast');});});
+            $('#q31-No').click(function() {$('#q31').hide('fast', function() {$('#q34').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q32" align="center" class="hidden">
+        <p class="question">Short stories it is then! Robots of Martians?</p>
+        <table><tbody><tr>
+            <td><button id="q32-robots">Robots</button></td>
+            <td><button id="q32-martians">Martians</button></td>
+        </tr></tbody></table>
+        <button id="q32-Back" class="btnBack" onclick="goBack(&#39;q32&#39;, &#39;q29&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q32-robots').click(function() {$('#q32').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q32', '055338256X', 'I, Robot', 'Isaac Asimov', '')); $('#leafNode').show('fast');});});
+            $('#q32-martians').click(function() {$('#q32').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q32', '0380973847', 'The Illustrated Man', 'Ray Bradbury', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q33" align="center" class="hidden">
+        <p class="question">Romance or warring magicians?</p>
+        <table><tbody><tr>
+            <td><button id="q33-romance">Romance</button></td>
+            <td><button id="q33-magicians">Magicians</button></td>
+        </tr></tbody></table>
+        <button id="q33-Back" class="btnBack" onclick="goBack(&#39;q33&#39;, &#39;q31&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q33-romance').click(function() {$('#q33').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q33', '0765342987', 'Kushiel\'s Legacy Series', 'Jacqueline Carey', '')); $('#leafNode').show('fast');});});
+            $('#q33-magicians').click(function() {$('#q33').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q33', '0765356155', 'Jonathan Strange & Mr Norrell', 'Susanna Clarke', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q34" align="center" class="hidden">
+        <p class="question">Ready to dive into a series?</p>
+        <table><tbody><tr>
+            <td><button id="q34-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q34-No" class="btnNo">No</button></td>
+            <td><button id="q34-Maybe">Maybe</button></td>
+        </tr><tr>
+        	<td>The other two options ended in the same strange choice.</td>
+        	<td>Let's keep this casual.</td>
+        	<td>How about an episodic series?</td>
+        </tr></tbody></table>
+        <button id="q34-Back" class="btnBack" onclick="goBack(&#39;q34&#39;, &#39;q31&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q34-Yes').click(function() {$('#q34').hide('fast', function() {$('#q35').show('fast');});});
+            $('#q34-No').click(function() {$('#q34').hide('fast', function() {$('#q36').show('fast');});});
+            $('#q34-Maybe').click(function() {$('#q34').hide('fast', function() {$('#q37').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q35" align="center" class="hidden">
+        <p class="question">Does the series have to be finished?</p>
+        <table><tbody><tr>
+            <td><button id="q35-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q35-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td></td>
+        	<td>I like to be held in suspense. Preferably for years at a time.</td>
+        </tr></tbody></table>
+        <button id="q35-Back" class="btnBack" onclick="goBack(&#39;q35&#39;, &#39;q34&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q35-Yes').click(function() {$('#q35').hide('fast', function() {$('#q38').show('fast');});});
+            $('#q35-No').click(function() {$('#q35').hide('fast', function() {$('#q39').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q36" align="center" class="hidden">
+        <p class="question">With pirates or without?</p>
+        <table><tbody><tr>
+            <td><button id="q36-pirates">With Pirates</button></td>
+            <td><button id="q36-nopirates">Without Pirates</button></td>
+        </tr><tr>
+        	<td></td>
+        	<td>No pirates here. No siree, Neil. No pirates at all.</td>
+        </tr></tbody></table>
+        <button id="q36-Back" class="btnBack" onclick="goBack(&#39;q36&#39;, &#39;q34&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q36-pirates').click(function() {$('#q36').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q36', 'B005K5DM32', 'The Princess Bride', 'William Goldman', '')); $('#leafNode').show('fast');});});
+            $('#q36-nopirates').click(function() {$('#q36').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q36', '0061689246', 'Stardust', 'Neil Gaiman', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q37" align="center" class="hidden">
+        <p class="question">What's your pleasure?</p>
+        <table><tbody><tr>
+            <td><button id="q37-unicorn">Bureaucratic Satire</button></td>
+            <td><button id="q37-bunny">Religious Satire</button></td>
+            <td><button id="q37-dragon">Fun with Parts</button></td>
+        </tr></tbody></table>
+        <button id="q37-Back" class="btnBack" onclick="goBack(&#39;q37&#39;, &#39;q34&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q37-unicorn').click(function() {$('#q37').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q37', '0060502932', 'Going Postal', 'Terry Pratchett', '')); $('#leafNode').show('fast');});});
+            $('#q37-bunny').click(function() {$('#q37').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q37', '0061092177', 'Small Gods', 'Terry Pratchett', '')); $('#leafNode').show('fast');});});
+            $('#q37-dragon').click(function() {$('#q37').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q37', '0345347536', 'Xanth Series', 'Piers Anthony', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q38" align="center" class="hidden">
+        <p class="question">Do the words "Sword &amp; Sorcery" have a positive connotation for you?</p>
+        <table><tbody><tr>
+            <td><button id="q38-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q38-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td>Wizards and barbarians? What's not to like?</td>
+        	<td></td>
+        </tr></tbody></table>
+        <button id="q38-Back" class="btnBack" onclick="goBack(&#39;q38&#39;, &#39;q35&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q38-Yes').click(function() {$('#q38').hide('fast', function() {$('#q40').show('fast');});});
+            $('#q38-No').click(function() {$('#q38').hide('fast', function() {$('#q41').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q39" align="center" class="hidden">
+        <p class="question">Take the high road or the low road?</p>
+        <table><tbody><tr>
+            <td><button id="q39-high">High fantasy</button></td>
+            <td><button id="q39-low">Low Fantasy</button></td>
+        </tr></tbody></table>
+        <button id="q38-Back" class="btnBack" onclick="goBack(&#39;q39&#39;, &#39;q35&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q39-high').click(function() {$('#q39').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q39', '0765365278', 'The Way of Kings', 'Brandon Sanderson', '')); $('#leafNode').show('fast');});});
+            $('#q39-low').click(function() {$('#q39').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q39', '0553103547', 'A Song of Ice and Fire Series', 'George R.R. Martin', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q40" align="center" class="hidden">
+        <p class="question">Do you like role-playing games?</p>
+        <table><tbody><tr>
+            <td><button id="q40-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q40-No" class="btnNo">No</button></td>
+        </tr></tbody></table>
+        <button id="q40-Back" class="btnBack" onclick="goBack(&#39;q40&#39;, &#39;q38&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q40-Yes').click(function() {$('#q40').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q40', '0786939532', 'The Legend of Drizzt Series', 'R.A. Salvatore', '')); $('#leafNode').show('fast');});});
+            $('#q40-No').click(function() {$('#q40').hide('fast', function() {$('#q42').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q41" align="center" class="hidden">
+        <p class="question">Looking for an old-fashioned trilogy?</p>
+        <table><tbody><tr>
+            <td><button id="q41-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q41-No" class="btnNo">No</button></td>
+            <td><button id="q41-Maybe">Maybe</button></td>
+        </tr><tr>
+        	<td>Three is my lucky number.</td>
+        	<td>"In for a penny, in for a pound" I always say.</td>
+        	<td>How about a trilogy of trilogies?</td>
+        </tr></tbody></table>
+        <button id="q41-Back" class="btnBack" onclick="goBack(&#39;q41&#39;, &#39;q38&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q41-Yes').click(function() {$('#q41').hide('fast', function() {$('#q43').show('fast');});});
+            $('#q41-No').click(function() {$('#q41').hide('fast', function() {$('#q44').show('fast');});});
+            $('#q41-Maybe').click(function() {$('#q41').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q41', '0345348656', 'The Chronicles of Thomas Covenant the Unbeliever', 'Stephen R. Donaldson', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q42" align="center" class="hidden">
+        <p class="question">Wizards or Barbarians?</p>
+        <table><tbody><tr>
+            <td><button id="q42-wizards">Wizards</button></td>
+            <td><button id="q42-barbarians">Barbarians</button></td>
+        </tr></tbody></table>
+        <button id="q42-Back" class="btnBack" onclick="goBack(&#39;q42&#39;, &#39;q40&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q42-wizards').click(function() {$('#q42').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q42', '0345498623', 'The Elric Saga', 'Michael Moorcock', '')); $('#leafNode').show('fast');});});
+            $('#q42-barbarians').click(function() {$('#q42').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q42', '0575077662', 'The Chronicles of Conan the Barbarian', 'Robert E. Howard', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q43" align="center" class="hidden">
+        <p class="question">What shall we read about?</p>
+        <table><tbody><tr>
+            <td><button id="q43-thieves">Thieves</button></td>
+            <td><button id="q43-macguffins">MacGuffins</button></td>
+            <td><button id="q43-assassins">Assassins</button></td>
+            <td><button id="q43-magicians">Magicians</button></td>
+        </tr></tbody></table>
+        <button id="q43-Back" class="btnBack" onclick="goBack(&#39;q43&#39;, &#39;q41&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q43-thieves').click(function() {$('#q43').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q43', '0765350386', 'The Mistborn Trilogy', 'Brandon Sanderson', '')); $('#leafNode').show('fast');});});
+            $('#q43-macguffins').click(function() {$('#q43').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q43', '0345453751', 'The Sword of Shannara Trilogy', 'Terry Brooks', '')); $('#leafNode').show('fast');});});
+            $('#q43-assassins').click(function() {$('#q43').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q43', '055357339X', 'The Farseer Trilogy', 'Robin Hobb', '')); $('#leafNode').show('fast');});});
+            $('#q43-magicians').click(function() {$('#q43').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q43', '0586217835', 'The Riftwar Saga', 'Raymond E</> Feist', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q44" align="center" class="hidden">
+        <p class="question">So, five or six books are enough for you?</p>
+        <table><tbody><tr>
+            <td><button id="q44-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q44-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td>That should keep me busy.</td>
+        	<td>I shall require at least 10.</td>
+        </tr></tbody></table>
+        <button id="q44-Back" class="btnBack" onclick="goBack(&#39;q44&#39;, &#39;q41&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q44-Yes').click(function() {$('#q44').hide('fast', function() {$('#q45').show('fast');});});
+            $('#q44-No').click(function() {$('#q44').hide('fast', function() {$('#q46').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q45" align="center" class="hidden">
+        <p class="question">Do you enjoy stories about orphaned farm boys?</p>
+        <table><tbody><tr>
+            <td><button id="q45-No">Yes/No</button></td>
+        </tr><tr>
+        	<td>Too bad! There's no other choice.</td>
+        </tr></tbody></table>
+        <button id="q45-Back" class="btnBack" onclick="goBack(&#39;q45&#39;, &#39;q44&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q45-No').click(function() {$('#q45').hide('fast', function() {$('#q47').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q46" align="center" class="hidden">
+        <p class="question">Do you enjoy quests to prevent great evil from conquering the world?</p>
+        <table><tbody><tr>
+            <td><button id="q46-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q46-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td>Good vs. Evil on an epic scale, please.</td>
+        	<td>I need a little more complexity.</td>
+        </tr></tbody></table>
+        <button id="q46-Back" class="btnBack" onclick="goBack(&#39;q46&#39;, &#39;q44&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q46-Yes').click(function() {$('#q46').hide('fast', function() {$('#q48').show('fast');});});
+            $('#q46-No').click(function() {$('#q46').hide('fast', function() {$('#q49').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q47" align="center" class="hidden">
+        <p class="question">Modern or classic?</p>
+        <table><tbody><tr>
+            <td><button id="q47-modern">Modern</button></td>
+            <td><button id="q47-classic">Classic</button></td>
+        </tr></tbody></table>
+        <button id="q47-Back" class="btnBack" onclick="goBack(&#39;q47&#39;, &#39;q45&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q47-modern').click(function() {$('#q47').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q47', '044101268X', 'The Codex Alera', 'Jim Butcher', '')); $('#leafNode').show('fast');});});
+            $('#q47-classic').click(function() {$('#q47').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q47', '0345456327', 'The Belgariad', 'David Eddings', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+    
+    <div id="q48" align="center" class="hidden">
+        <p class="question">Who will save us?</p>
+        <table><tbody><tr>
+            <td><button id="q48-seeker">The Seeker of Truth</button></td>
+            <td><button id="q48-power">The One Power</button></td>
+        </tr></tbody></table>
+        <button id="q48-Back" class="btnBack" onclick="goBack(&#39;q48&#39;, &#39;q46&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q48-seeker').click(function() {$('#q48').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q48', '0812575601', 'The The Sword of Truth Series', 'Terry Goodkind', '')); $('#leafNode').show('fast');});});
+            $('#q48-power').click(function() {$('#q48').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q48', '0812538366', 'The Wheel of Time', 'Robert Jordan', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q49" align="center" class="hidden">
+        <p class="question">Choose wisely, this is the end</p>
+        <table><tbody><tr>
+            <td><button id="q49-seeker">Earth in the Shadows</button></td>
+            <td><button id="q49-power">Weaving Timeline</button></td>
+        </tr></tbody></table>
+        <button id="q49-Back" class="btnBack" onclick="goBack(&#39;q49&#39;, &#39;q46&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q49-seeker').click(function() {$('#q49').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q49', '0380809060', 'The Chronicles of Amber', 'Roger Zelazny', '')); $('#leafNode').show('fast');});});
+            $('#q49-power').click(function() {$('#q49').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q49', '0765322889', 'The Malazan Book of the Fallen', 'Steven Erikson', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q50" align="center" class="hidden">
+        <p class="question">Sure, you can have it all! Do you want to go into the future or into the past?</p>
+        <table><tbody><tr>
+            <td><button id="q50-future">Future</button></td>
+            <td><button id="q50-past">Past</button></td>
+        </tr></tbody></table>
+        <button id="q50-Back" class="btnBack" onclick="goBack(&#39;q50&#39;, &#39;q1&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q50-future').click(function() {$('#q50').hide('fast', function() {$('#q54').show('fast');});});
+            $('#q50-past').click(function() {$('#q50').hide('fast', function() {$('#q55').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q51" align="center" class="hidden">
+        <p class="question">Pro-mo superheroes or tortured specter?</p>
+        <table><tbody><tr>
+            <td><button id="q51-heroes">Heroes</button></td>
+            <td><button id="q48-dreammaster">Master of Dreams</button></td>
+        </tr></tbody></table>
+        <button id="q51-Back" class="btnBack" onclick="goBack(&#39;q51&#39;, &#39;q1&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q51-heroes').click(function() {$('#q51').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q51', '1401219268', 'Watchmen', 'Alan Moore and Dave Gibbons', '')); $('#leafNode').show('fast');});});
+            $('#q48-dreammaster').click(function() {$('#q51').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q51', '1401225756', 'The Sandman Series', 'Neil Gaiman', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q52" align="center" class="hidden">
+        <p class="question">Not to much to choose from. Are you looking for vampires?</p>
+        <table><tbody><tr>
+            <td><button id="q52-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q52-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td></td>
+        	<td>More like zombies.</td>
+        </tr></tbody></table>
+        <button id="q52-Back" class="btnBack" onclick="goBack(&#39;q52&#39;, &#39;q1&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q52-Yes').click(function() {$('#q52').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q52', '0142411108', 'Sunshine', 'Robin McKinley', '')); $('#leafNode').show('fast');});});
+            $('#q52-No').click(function() {$('#q52').hide('fast', function() {$('#q56').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q53" align="center" class="hidden">
+        <p class="question">We won't tell.  Do you prefer drama?</p>
+        <table><tbody><tr>
+            <td><button id="q53-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q53-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td>I love me a good tear-jerker.</td>
+        	<td>I just watched <i>The Notebook</i> last night.</td>
+        </tr></tbody></table>
+        <button id="q53-Back" class="btnBack" onclick="goBack(&#39;q53&#39;, &#39;q1&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q53-Yes').click(function() {$('#q53').hide('fast', function() {$('#q57').show('fast');});});
+            $('#q53-No').click(function() {$('#q53').hide('fast', function() {$('#q58').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q54" align="center" class="hidden">
+        <p class="question">Are you a math geek?</p>
+        <table><tbody><tr>
+            <td><button id="q54-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q54-No" class="btnNo">No</button></td>
+        </tr></tbody></table>
+        <button id="q54-Back" class="btnBack" onclick="goBack(&#39;q54&#39;, &#39;q50&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q54-Yes').click(function() {$('#q54').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q54', 'B005DI71QA', 'Anathem', 'Neal Stephenson', '')); $('#leafNode').show('fast');});});
+            $('#q54-No').click(function() {$('#q54').hide('fast', function() {$('#q59').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q55" align="center" class="hidden">
+        <p class="question">Do you like monsters?</p>
+        <table><tbody><tr>
+            <td><button id="q55-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q55-No" class="btnNo">No</button></td>
+        </tr></tbody></table>
+        <button id="q55-Back" class="btnBack" onclick="goBack(&#39;q55&#39;, &#39;q50&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q55-Yes').click(function() {$('#q55').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q55', '0345459407', 'Perdido Street Station', 'China Mi&eacute;ville', '')); $('#leafNode').show('fast');});});
+            $('#q55-No').click(function() {$('#q55').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q55', '0142001805', 'The Eyre Affair', 'Jasper Fforde', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q56" align="center" class="hidden">
+        <p class="question">Zombie war, or one man against a horde?</p>
+        <table><tbody><tr>
+            <td><button id="q56-No" class="btnNo">No</button></td>
+            <td><button id="q56-war">War</button></td>
+            <td><button id="q56-oneman">One Man</button></td>
+        </tr><tr>
+        	<td>On second thought, why not go with a classic?</td>
+        	<td>With a little help from my friends...</td>
+        	<td>I'm going it alone.</td>
+        </tr></tbody></table>
+        <button id="q56-Back" class="btnBack" onclick="goBack(&#39;q56&#39;, &#39;q52&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q56-No').click(function() {$('#q56').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q56', '0141439475', 'Frankenstein', 'Mary Shelley', '')); $('#leafNode').show('fast');});});
+            $('#q56-war').click(function() {$('#q56').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q56', '0307888681', 'World War Z', 'Max Brooks', '')); $('#leafNode').show('fast');});});
+            $('#q56-oneman').click(function() {$('#q56').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q56', '0765357151', 'I Am Legend', 'Richard Matheson', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q57" align="center" class="hidden">
+        <p class="question">Romance or overcoming the odds?</p>
+        <table><tbody><tr>
+            <td><button id="q57-romance">Romance</button></td>
+            <td><button id="q57-underdog">Underdog</button></td>
+        </tr><tr>
+        	<td></td>
+        	<td>I always root for the underdog.</td>
+        </tr></tbody></table>
+        <button id="q57-Back" class="btnBack" onclick="goBack(&#39;q57&#39;, &#39;q53&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q57-romance').click(function() {$('#q57').hide('fast', function() {$('#q60').show('fast');});});
+            $('#q57-underdog').click(function() {$('#q57').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q57', '1857989384', 'Flowers for Algernon', 'Daniel Keyes', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q58" align="center" class="hidden">
+        <p class="question">Postmodern mind-bender?</p>
+        <table><tbody><tr>
+            <td><button id="q58-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q58-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td>If one examines neo-cultural narrative, one is faced with a choice: either accept the subtextual paradigm of expression or conclude that narrative must come from communication. This is the dialectic paradigm of content holds...</td>
+        	<td></td>
+        </tr></tbody></table>
+        <button id="q58-Back" class="btnBack" onclick="goBack(&#39;q58&#39;, &#39;q53&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q58-Yes').click(function() {$('#q58').hide('fast', function() {$('#q61').show('fast');});});
+            $('#q58-No').click(function() {$('#q58').hide('fast', function() {$('#q62').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q59" align="center" class="hidden">
+        <p class="question">What sounds more interesting: A dying sun or an impaling demon?</p>
+        <table><tbody><tr>
+            <td><button id="q59-sun">Dying Sun</button></td>
+            <td><button id="q57-shrike">Impaling Demon</button></td>
+        </tr><tr>
+        	<td>A dying sun sounds poetic.</td>
+        	<td>Bring on the Shrike!</td>
+        </tr></tbody></table>
+        <button id="q59-Back" class="btnBack" onclick="goBack(&#39;q59&#39;, &#39;q54&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q59-sun').click(function() {$('#q59').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q59', '0312890176', 'The Book of the New Sun', 'Gene Wolfe', '')); $('#leafNode').show('fast');});});
+            $('#q57-shrike').click(function() {$('#q59').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q59', '0553283685', 'Hyperion', 'Dan Simmons', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q60" align="center" class="hidden">
+        <p class="question">Do you like a little time travel with your love story?</p>
+        <table><tbody><tr>
+            <td><button id="q60-both">Yes/No</button></td>
+        </tr><tr>
+        	<td>Too bad! There's no other choice.</td>
+        </tr></tbody></table>
+        <button id="q60-Back" class="btnBack" onclick="goBack(&#39;q60&#39;, &#39;q57&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q60-both').click(function() {$('#q60').hide('fast', function() {$('#q63').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q61" align="center" class="hidden">
+        <p class="question">Want some time travel too?</p>
+        <table><tbody><tr>
+            <td><button id="q61-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q61-No" class="btnNo">No</button></td>
+        </tr></tbody></table>
+        <button id="q61-Back" class="btnBack" onclick="goBack(&#39;q61&#39;, &#39;q58&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q61-Yes').click(function() {$('#q61').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q61', '0440180295', 'Slaughterhouse-Five', 'Kurt Vonnegut', '')); $('#leafNode').show('fast');});});
+            $('#q61-No').click(function() {$('#q61').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q61', '038533348X', 'Cat\'s Cradle', 'Kurt Vonnegut', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q62" align="center" class="hidden">
+        <p class="question">Are you interested in Dystopian fiction?</p>
+        <table><tbody><tr>
+            <td><button id="q62-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q62-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td>I'm a sucker for worst-case scenarios.</td>
+        	<td>The world is bleak enough already.</td>
+        </tr></tbody></table>
+        <button id="q62-Back" class="btnBack" onclick="goBack(&#39;q62&#39;, &#39;q58&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q62-Yes').click(function() {$('#q62').hide('fast', function() {$('#q64').show('fast');});});
+            $('#q62-No').click(function() {$('#q62').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q62', '0452284244', 'Animal Farm', 'George Orwell', 'Sounds like you can use a nice allegory.')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q63" align="center" class="hidden">
+        <p class="question">Classic or contemporary?</p>
+        <table><tbody><tr>
+            <td><button id="q63-classic">Classic</button></td>
+            <td><button id="q63-contemp">Contemporary</button></td>
+        </tr></tbody></table>
+        <button id="q63-Back" class="btnBack" onclick="goBack(&#39;q63&#39;, &#39;q60&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q63-classic').click(function() {$('#q63').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q63', '0440423201', 'Outlander', 'Diana Gabaldon', '')); $('#leafNode').show('fast');});});
+            $('#q63-contemp').click(function() {$('#q63').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q63', '015602943X', 'The Time Traveler\'s Wife', 'Audrey Niffenegger', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q64" align="center" class="hidden">
+        <p class="question">Totalitarian or world gone mad?</p>
+        <table><tbody><tr>
+            <td><button id="q64-dictators">Dictators</button></td>
+            <td><button id="q64-madness">Madness</button></td>
+        </tr></tbody></table>
+        <button id="q64-Back" class="btnBack" onclick="goBack(&#39;q64&#39;, &#39;q62&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q64-dictators').click(function() {$('#q64').hide('fast', function() {$('#q65').show('fast');});});
+            $('#q64-madness').click(function() {$('#q64').hide('fast', function() {$('#q66').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q65" align="center" class="hidden">
+        <p class="question">What type of dictator?</p>
+        <table><tbody><tr>
+            <td><button id="q65-totalitarians">Religious Totalitarians</button></td>
+            <td><button id="q65-warlords">Warlords</button></td>
+        </tr></tbody></table>
+        <button id="q65-Back" class="btnBack" onclick="goBack(&#39;q65&#39;, &#39;q64&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q65-totalitarians').click(function() {$('#q65').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q65', '038549081X', 'The Handmaid\'s Tale', 'Margaret Atwood', '')); $('#leafNode').show('fast');});});
+            $('#q65-warlords').click(function() {$('#q65').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q65', '0452284236', 'Nineteen Eighty-Four', 'George Orwell', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q66" align="center" class="hidden">
+        <p class="question">Do manufactured humans interest you?</p>
+        <table><tbody><tr>
+            <td><button id="q66-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q66-No" class="btnNo">No</button></td>
+        </tr></tbody></table>
+        <button id="q66-Back" class="btnBack" onclick="goBack(&#39;q66&#39;, &#39;q64&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q66-Yes').click(function() {$('#q66').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q66', '0060850523', 'Brave New World', 'Aldous Huxley', '')); $('#leafNode').show('fast');});});
+            $('#q66-No').click(function() {$('#q66').hide('fast', function() {$('#q67').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q67" align="center" class="hidden">
+        <p class="question">Which question most frightens you?</p>
+        <table><tbody><tr>
+            <td><button id="q67-books">Who Needs Books?</button></td>
+            <td><button id="q67-freewill">Who Needs Free Will?</button></td>
+            <td><button id="q67-No" class="btnNo">Neither</button></td>
+        </tr><tr>
+        	<td></td>
+        	<td></td>
+        	<td>I was thinking more post-apocalyptic.</td>
+        </tr></tbody></table>
+        <button id="q67-Back" class="btnBack" onclick="goBack(&#39;q67&#39;, &#39;q66&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q67-books').click(function() {$('#q67').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q67', '0345342968', 'Fahrenheit 451', 'Ray Bradbury', '')); $('#leafNode').show('fast');});});
+            $('#q67-freewill').click(function() {$('#q67').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q67', '0808581945', 'A Clockwork Orange', 'Anthony Burgess', '')); $('#leafNode').show('fast');});});
+            $('#q67-No').click(function() {$('#q67').hide('fast', function() {$('#q68').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q68" align="center" class="hidden">
+        <p class="question">Like the world on fire?</p>
+        <table><tbody><tr>
+            <td><button id="q68-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q68-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td>Some men just want to see the world burn.</td>
+        	<td>...but a worldwide pandemic would be cool.</td>
+        </tr></tbody></table>
+        <button id="q68-Back" class="btnBack" onclick="goBack(&#39;q68&#39;, &#39;q67&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q68-Yes').click(function() {$('#q68').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q68', '0307387895', 'The Road', 'Cormac McCarthy', '')); $('#leafNode').show('fast');});});
+            $('#q68-No').click(function() {$('#q68').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q68', '0307743683', 'The Stand', 'Stephen King', 'Come on down and meet your maker...')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+
+    <div id="q69" align="center" class="hidden">
+        <p class="question">Do you have at least <i>some</i> familiarity with fantasy?</p>
+        <table><tbody><tr>
+            <td><button id="q69-Yes" class="btnYes">Yes</button></td>
+            <td><button id="q69-No" class="btnNo">No</button></td>
+        </tr><tr>
+        	<td>I know what elves are.</td>
+        	<td>I'm wet behind the pointy ears.</td>
+        </tr></tbody></table>
+        <button id="q69-Back" class="btnBack" onclick="goBack(&#39;q69&#39;, &#39;q6&#39;)">&lt; Go Back</button>
+        <script>
+            $('#q69-Yes').click(function() {$('#q69').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q69', '0618391118', 'The Silmarillion', 'J.R.R. Tolkien', '')); $('#leafNode').show('fast');});});
+            $('#q69-No').click(function() {$('#q69').hide('fast', function() {$('#leafNode').html(buildFinalHTML('q69', '0618345841', 'The Lord of the Rings', 'J.R.R. Tolkien', '')); $('#leafNode').show('fast');});});
+        </script>
+    </div>
+
+    <!-- Final div section for final book -->
+    <div id="leafNode" align="center" class="hidden" style="display: none; "><p></p><h1 class="title">Neuromancer</h1>by William Gibson<br><br><a href="http://amazon.com/exec/obidos/ASIN/0441012035/sfstom-20" target="amz"><img border="0" src="./npr100_files/0441012035.01._SCLZZZZZZZ_SL500_.jpg" class="justBorder"></a><br><br><button class="btnBuy" onclick="window.open(&quot;http://amazon.com/exec/obidos/ASIN/0441012035/sfstom-20&quot;, &quot;amz&quot;)">Buy at Amazon</button><br><button class="btnBack" onclick="goBack(&quot;leafNode&quot;, &quot;q4&quot;)">&lt; Go Back</button><br><a href="javascript:void(0)" onclick="startOver()">Start Over</a></div>
+
+
+<script src="./npr100_files/urchin.js" type="text/javascript"></script>
+<script type="text/javascript">
+_uacct = "UA-591591-1";
+urchinTracker();
+</script>    
+    
+
+
+</body></html>
