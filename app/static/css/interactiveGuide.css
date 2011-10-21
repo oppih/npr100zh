@@ -60,7 +60,7 @@ button.btnBuy {
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#33ff33', endColorstr='#339933'); /* IE6 & IE7 */
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#33ff33', endColorstr='#339933')"; /* IE8 */
     height:40px;
-    width:200px;
+    width:260px;
     font-size:16pt;
 }
 
